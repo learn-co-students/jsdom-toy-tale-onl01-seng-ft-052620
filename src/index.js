@@ -2,6 +2,8 @@
 let addToy = false;
 let toyCollection = document.querySelector('#toy-collection')
 
+const submitButton = document.getElementsByClassName("submit")[0]
+
 // fetch function defined
 function fetchToyObj() {
   fetch("http://localhost:3000/toys")
@@ -27,7 +29,7 @@ function renderToyObj(toy) {
     likeBtn.className = "like-btn"
     likeBtn.innerText = "Like <3"
     likeBtn.addEventListener('click', (e) => {
-      likes(toy, e)
+      addLikes(toy, e)
     })
     div.appendChild(h2)
     div.appendChild(img)
@@ -40,11 +42,76 @@ function renderToyObj(toy) {
 document.addEventListener('DOMContentLoaded', function() {
   fetchToyObj()
 })
+
+
+// add new toy section
+function addNewToy(name, image, likes){
+
+  return fetch("http://localhost:3000/toys", {
+       method: "POST",
+       headers: {
+     "Content-Type": "application/json",
+     "Accept": "application/json"
+       },
+   
+       body: JSON.stringify( {
+       name,
+       image,
+       likes
+       })
+  })
+  .then(function(response) {
+       return response.json();
+  } )
+  .then( function ( object ) {
+       console.log(object);
+       renderToyObj(object);
+  })
+  .catch( function ( error ) {
+       document.body.innerHTML = error.message
+  })
+
+}
+//submitting action for new toy
+submitButton.addEventListener('click', function(e){
+    let tName = e.target.parentNode.children[1].value; 
+    let tImg = e.target.parentNode.children[2].value;
+  addNewToy(tName, tImg, 0)
+  tName.value = ""
+  tImg.value = ""
+  e.preventDefault();
+})
+
+//increase toy likes
+function addLikes(toy, e) {
+  e.preventDefault()
+
+  let increaseLikes = parseInt(e.target.previousElementSibling.innerText) + 1;
+
+  fetch(`http://localhost:3000/toys/${toy.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+
+    },
+    body: JSON.stringify({
+      "likes": increaseLikes
+    })
+  })
+  .then(response => response.json())
+  .then((like_obj => {
+    e.target.previousElementSibling.innerText = `${increaseLikes} + Likes`;
+  }))
+}
+
+
 // code below added by learn.co 
 
 document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector("#new-toy-btn");
   const toyFormContainer = document.querySelector(".container");
+  // fetchToyObj();
   addBtn.addEventListener("click", () => {
     // hide & seek with the form
     addToy = !addToy;
