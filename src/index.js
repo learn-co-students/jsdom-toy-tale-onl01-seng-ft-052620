@@ -60,8 +60,8 @@ function addNewToy(name, image, likes){
        likes
        })
   })
-  .then(function(response) {
-       return response.json();
+  .then(function(resp) {
+       return resp.json();
   } )
   .then( function ( object ) {
        console.log(object);
@@ -99,9 +99,9 @@ function addLikes(toy, e) {
       "likes": increaseLikes
     })
   })
-  .then(response => response.json())
+  .then(resp => resp.json())
   .then((like_obj => {
-    e.target.previousElementSibling.innerText = `${increaseLikes} + Likes`;
+    e.target.previousElementSibling.innerText = `${increaseLikes}`;
   }))
 }
 

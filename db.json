@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Woody",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-      "likes": 5
+      "likes": 7
     },
     {
       "id": 2,
@@ -50,7 +50,7 @@
     },
     {
       "name": "New Toy",
-      "likes": 1,
+      "likes": 4,
       "id": 9
     }
   ]
