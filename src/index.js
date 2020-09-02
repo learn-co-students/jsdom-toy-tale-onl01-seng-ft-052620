@@ -22,7 +22,7 @@ function renderToyObj(toy) {
     img.className = "toy-avatar"
     img.src = toy["image"]
   let likes = document.createElement('p')
-    likes.innerText = toy["likes"]
+    likes.innerText = toy["likes"] + " likes";
   let likeBtn = document.createElement('button')
     likeBtn.className = "like-btn"
     likeBtn.innerText = "Like <3"
