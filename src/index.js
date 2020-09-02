@@ -22,7 +22,7 @@ function renderToyObj(toy) {
     img.className = "toy-avatar"
     img.src = toy["image"]
   let likes = document.createElement('p')
-    likes.innerText = toy["likes"] + " likes";
+    likes.innerText = toy["likes"] + " Likes";
   let likeBtn = document.createElement('button')
     likeBtn.className = "like-btn"
     likeBtn.innerText = "Like <3"
@@ -55,12 +55,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-/*
-<div class="card">
-<h2>Woody</h2>
-<img src=toy_image_url class="toy-avatar" />
-<p>4 Likes </p>
-<button class="like-btn">Like <3</button>
-</div>
-*/
