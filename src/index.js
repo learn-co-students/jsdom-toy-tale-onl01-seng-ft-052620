@@ -101,7 +101,7 @@ function addLikes(toy, e) {
   })
   .then(resp => resp.json())
   .then((like_obj => {
-    e.target.previousElementSibling.innerText = `${increaseLikes}`;
+    e.target.previousElementSibling.innerText = `${increaseLikes} Likes`;
   }))
 }
 
