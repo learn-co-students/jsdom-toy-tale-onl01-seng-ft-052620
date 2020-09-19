@@ -102,9 +102,11 @@ function findName(inputName){
 function updateLikes(id, currentLikeCount){
   const patchConfigurationObj = {
     method: 'Patch',
+    // mode: 'same-origin',
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json"
+      "Accept": "application/json",
+      "Access-Control-Allow-Origin": `${patchUrl()}/${id}`
     },
     body: JSON.stringify({
       "likes": updtateCurrentLikeCount(currentLikeCount)
